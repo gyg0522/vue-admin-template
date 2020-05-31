@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo, getMenu } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -6,7 +6,8 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    menuList: []
   }
 }
 
@@ -24,6 +25,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_MENU_LIST: (state, menuList) => {
+    state.menuList = menuList
   }
 }
 
@@ -84,6 +88,19 @@ const actions = {
       removeToken() // must remove  token  first
       commit('RESET_STATE')
       resolve()
+    })
+  },
+
+  // get menu
+  getMenu({ commit }) {
+    return new Promise((resolve, reject) => {
+      getMenu().then(response => {
+        const { data } = response
+        commit('SET_MENU_LIST', data)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
     })
   }
 }

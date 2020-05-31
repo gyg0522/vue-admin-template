@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 import router from './router'
 import store from './store'
 import { Message } from 'element-ui'
@@ -10,7 +11,7 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login'] // no redirect whitelist
 
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
 
@@ -31,9 +32,12 @@ router.beforeEach(async(to, from, next) => {
         next()
       } else {
         try {
-          // get user info
           await store.dispatch('user/getInfo')
-
+          await store.dispatch('user/getMenu')
+          await store.dispatch('permission/GenerateRoutes', store.getters.menus)
+          if (store.getters.addRouters.length > 0) {
+            router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
+          }
           next()
         } catch (error) {
           // remove token and go to login page to re-login
