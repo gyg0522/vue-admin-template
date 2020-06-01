@@ -34,11 +34,14 @@ router.beforeEach(async (to, from, next) => {
         try {
           await store.dispatch('user/getInfo')
           await store.dispatch('user/getMenu')
-          await store.dispatch('permission/GenerateRoutes', store.getters.menus)
-          if (store.getters.addRouters.length > 0) {
-            router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-          }
-          next()
+          store.dispatch('permission/GenerateRoutes', store.getters.menus).then(res => {
+            console.log('====>  ', router.options.routes)
+            if (res.length > 0) {
+              router.addRoutes(res) // 动态添加可访问路由表
+            }
+
+            next()
+          })
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')

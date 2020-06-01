@@ -63,6 +63,9 @@ export default {
       }
     }
   },
+  created() {
+    alert(12)
+  },
   methods: {
     onSubmit() {
       this.$message('submit!')
