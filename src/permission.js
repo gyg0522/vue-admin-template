@@ -40,7 +40,7 @@ router.beforeEach(async (to, from, next) => {
               router.addRoutes(res) // 动态添加可访问路由表
             }
 
-            next()
+            next({ ...to, replace: true })
           })
         } catch (error) {
           // remove token and go to login page to re-login
