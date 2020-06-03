@@ -12,7 +12,16 @@
         :collapse-transition="false"
         mode="vertical"
       >
+<<<<<<< HEAD
         <sidebar-item v-for="(route, index) in routes" :key="index" :item="route" :base-path="route.path" />
+=======
+        <sidebar-item
+          v-for="(route, index) in routes"
+          :key="index+ '-item'"
+          :item="route"
+          :base-path="route.path"
+        />
+>>>>>>> 6fdb79a970cde46b360249ad638b68ea9f902e38
       </el-menu>
     </el-scrollbar>
   </div>

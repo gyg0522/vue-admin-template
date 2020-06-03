@@ -26,6 +26,7 @@ const users = {
 const menus = [
 
   {
+<<<<<<< HEAD
     path: '',
     children: [
       {
@@ -38,6 +39,20 @@ const menus = [
 
   {
     path: '',
+=======
+    path: '/',
+    // component: Layout,
+    children: [{
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: '/views/dashboard/index',
+      meta: { title: 'Dashboard', icon: 'dashboard' }
+    }]
+  },
+  {
+    path: '/example',
+    // component: Layout,
+>>>>>>> 6fdb79a970cde46b360249ad638b68ea9f902e38
     name: 'Example',
     meta: { title: 'Example', icon: 'example' },
     children: [
@@ -55,9 +70,25 @@ const menus = [
       }
     ]
   },
+  {
+<<<<<<< HEAD
+    path: '',
+=======
+    path: '/form',
+    // component: Layout,
+    children: [
+      {
+        path: '/form/index',
+        name: 'Form',
+        component: '/views/form/index',
+        meta: { title: 'Form', icon: 'form' }
+      }
+    ]
+  },
 
   {
-    path: '',
+    path: '/nested',
+>>>>>>> 6fdb79a970cde46b360249ad638b68ea9f902e38
     // component: Layout,
     name: 'Nested',
     meta: {

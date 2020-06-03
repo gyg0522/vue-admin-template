@@ -38,8 +38,12 @@ router.beforeEach(async (to, from, next) => {
             if (res.length > 0) {
               router.addRoutes(res) // 动态添加可访问路由表
             }
+<<<<<<< HEAD
             // hack method to ensure that addRoutes is complete
             // set the replace: true, so the navigation will not leave a history record
+=======
+
+>>>>>>> 6fdb79a970cde46b360249ad638b68ea9f902e38
             next({ ...to, replace: true })
           })
         } catch (error) {

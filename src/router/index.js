@@ -27,6 +27,7 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
+<<<<<<< HEAD
 export const constantRoutes = [{
   path: '/login',
   component: () => import('@/views/login/index'),
@@ -44,6 +45,18 @@ export const constantRoutes = [{
       title: 'Dashboard',
       icon: 'dashboard'
     }
+=======
+export const constantRoutes = [
+  {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/404'),
+    hidden: true
+>>>>>>> 6fdb79a970cde46b360249ad638b68ea9f902e38
   }
   ]
 },
