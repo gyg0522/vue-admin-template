@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
-import Layout from '@/layout'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -27,25 +26,6 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-<<<<<<< HEAD
-export const constantRoutes = [{
-  path: '/login',
-  component: () => import('@/views/login/index'),
-  hidden: true
-},
-{
-  path: '/',
-  component: Layout,
-  redirect: '/dashboard',
-  children: [{
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: resolve => require(['@/views/dashboard/index'], resolve),
-    meta: {
-      title: 'Dashboard',
-      icon: 'dashboard'
-    }
-=======
 export const constantRoutes = [
   {
     path: '/login',
@@ -56,31 +36,7 @@ export const constantRoutes = [
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
->>>>>>> 6fdb79a970cde46b360249ad638b68ea9f902e38
   }
-  ]
-},
-
-// {
-//   path: '/form',
-//   component: Layout,
-//   redirect: '/form/index',
-//   children: [
-//     {
-//       path: 'index',
-//       name: 'Form',
-//       component: resolve => require(['@/views/form/index'], resolve),
-//       meta: { title: 'Form', icon: 'form' }
-//     }
-//   ]
-// },
-
-{
-  path: '/404',
-  component: () => import('@/views/404'),
-  hidden: true
-}
-
 ]
 
 const createRouter = () => new Router({
