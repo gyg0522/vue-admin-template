@@ -4,7 +4,7 @@ const getters = {
   token: state => state.user.token,
   avatar: state => state.user.avatar,
   name: state => state.user.name,
-  addRouters: state => state.permission.addRouters,
+  routers: state => state.permission.routers,
   menus: state => state.user.menuList
 }
 export default getters

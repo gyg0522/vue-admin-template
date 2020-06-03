@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
-
+import Layout from '@/layout'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -27,29 +27,54 @@ Vue.use(Router)
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
-  {
+export const constantRoutes = [{
+  path: '/login',
+  component: () => import('@/views/login/index'),
+  hidden: true
+},
+{
+  path: '/',
+  component: Layout,
+  redirect: '/dashboard',
+  children: [{
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import('@/views/dashboard/index'),
-    meta: { title: 'Dashboard', icon: 'dashboard' }
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
+    component: resolve => require(['@/views/dashboard/index'], resolve),
+    meta: {
+      title: 'Dashboard',
+      icon: 'dashboard'
+    }
   }
+  ]
+},
+
+// {
+//   path: '/form',
+//   component: Layout,
+//   redirect: '/form/index',
+//   children: [
+//     {
+//       path: 'index',
+//       name: 'Form',
+//       component: resolve => require(['@/views/form/index'], resolve),
+//       meta: { title: 'Form', icon: 'form' }
+//     }
+//   ]
+// },
+
+{
+  path: '/404',
+  component: () => import('@/views/404'),
+  hidden: true
+}
 
 ]
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: constantRoutes
 })
 

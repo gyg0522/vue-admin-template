@@ -24,21 +24,31 @@ const users = {
 }
 
 const menus = [
+
   {
-    path: '/example',
-    // component: Layout,
-    redirect: '/example/table',
+    path: '',
+    children: [
+      {
+        path: '/form/index',
+        name: 'Form',
+        meta: { title: 'Form', icon: 'form' }
+      }
+    ]
+  },
+
+  {
+    path: '',
     name: 'Example',
     meta: { title: 'Example', icon: 'example' },
     children: [
       {
-        path: 'table',
+        path: '/example/table',
         name: 'Table',
         component: '/views/table/index',
         meta: { title: 'Table', icon: 'table' }
       },
       {
-        path: 'tree',
+        path: '/example/tree',
         name: 'Tree',
         component: '/views/tree/index',
         meta: { title: 'Tree', icon: 'tree' }
@@ -47,23 +57,8 @@ const menus = [
   },
 
   {
-    path: '/form',
+    path: '',
     // component: Layout,
-    redirect: '/form/index',
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: '/views/form/index',
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    // component: Layout,
-    redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
       title: 'Nested',
@@ -71,7 +66,7 @@ const menus = [
     },
     children: [
       {
-        path: 'menu1',
+        path: '/nested/menu1',
         component: '/views/nested/menu1/index', // Parent router-view
         name: 'Menu1',
         meta: { title: 'Menu1' },

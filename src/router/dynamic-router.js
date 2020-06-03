@@ -1,13 +1,25 @@
-/* Layout */
 import Layout from '@/layout'
+// 使用钩子函数对路由进行权限跳转
+const context = require.context('../views', true, /router.js$/)
+console.log(context)
 
-const indexRouter = {
-  path: '/',
-  component: Layout,
-  redirect: '/dashboard',
-  children: []
+const asyncConstantRouter = context.keys().map(path => {
+  var router = require(`../views${path.substr(1)}`).default
+  console.log(router())
+  //   console.log(router()) router(i.split('/')[1])
+  return null
+})
+
+const getComponent = (item, parent) => {
+  console.log('=====>', asyncConstantRouter)
+  if (parent) {
+    return asyncConstantRouter(item.name)
+  } else {
+    return Layout
+  }
 }
 
+/* Layout */
 const dynamicRouter = (routerMap, parent) => {
   return routerMap.map(item => {
     const {
@@ -18,17 +30,10 @@ const dynamicRouter = (routerMap, parent) => {
     } = item.meta || {}
     const currentRouter = {
       // 如果路由设置了 path，则作为默认 path，否则 路由地址 动态拼接生成如 /dashboard/workplace
-      path: item.path || `${parent && parent.path || ''}/${item.key}`,
+      path: item.path || '',
       name: item.name || item.path || '',
       // 该路由对应页面的 组件 : (动态加载)
-      // component: resolve => {
-      //   if (parent) {
-      //     require([`..${item.component}.vue`], resolve)
-      //   } else {
-      //     require(['../layout/index.vue'], resolve)
-      //   }
-      // },
-      component: resolve => require([`..${item.component}.vue`], resolve),
+      component: getComponent(item, parent),
       meta: {
         title: title,
         icon: icon || undefined,
@@ -71,8 +76,7 @@ export const GeneratorDynamicRouter = (routerMap) => {
       redirect: '/404',
       hidden: true
     })
-    indexRouter.children = routers
-    console.log(indexRouter)
-    resolve(indexRouter)
+    console.log(routers)
+    resolve(routers)
   })
 }

@@ -35,12 +35,12 @@ router.beforeEach(async (to, from, next) => {
           await store.dispatch('user/getInfo')
           await store.dispatch('user/getMenu')
           store.dispatch('permission/GenerateRoutes', store.getters.menus).then(res => {
-            console.log('====>  ', router.options.routes)
             if (res.length > 0) {
               router.addRoutes(res) // 动态添加可访问路由表
             }
-
-            next()
+            // hack method to ensure that addRoutes is complete
+            // set the replace: true, so the navigation will not leave a history record
+            next({ ...to, replace: true })
           })
         } catch (error) {
           // remove token and go to login page to re-login
