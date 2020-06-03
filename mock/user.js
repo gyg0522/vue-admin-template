@@ -30,7 +30,7 @@ const menus = [
     children: [
       {
         path: '/form/index',
-        name: 'Form',
+        name: 'form',
         meta: { title: 'Form', icon: 'form' }
       }
     ]
@@ -43,13 +43,13 @@ const menus = [
     children: [
       {
         path: '/example/table',
-        name: 'Table',
+        name: 'table',
         component: '/views/table/index',
         meta: { title: 'Table', icon: 'table' }
       },
       {
         path: '/example/tree',
-        name: 'Tree',
+        name: 'tree',
         component: '/views/tree/index',
         meta: { title: 'Tree', icon: 'tree' }
       }
@@ -67,31 +67,31 @@ const menus = [
       {
         path: '/nested/menu1',
         component: '/views/nested/menu1/index', // Parent router-view
-        name: 'Menu1',
+        name: 'nested/menu1',
         meta: { title: 'Menu1' },
         children: [
           {
             path: 'menu1-1',
             component: '/views/nested/menu1/menu1-1',
-            name: 'Menu1-1',
+            name: 'nested/menu1/menu1-1',
             meta: { title: 'Menu1-1' }
           },
           {
             path: 'menu1-2',
             component: '/views/nested/menu1/menu1-2',
-            name: 'Menu1-2',
+            name: 'nested/menu1/menu1-2',
             meta: { title: 'Menu1-2' },
             children: [
               {
                 path: 'menu1-2-1',
                 component: '/views/nested/menu1/menu1-2/menu1-2-1',
-                name: 'Menu1-2-1',
+                name: 'nested/menu1/menu1-2/menu1-2-1',
                 meta: { title: 'Menu1-2-1' }
               },
               {
                 path: 'menu1-2-2',
                 component: '/views/nested/menu1/menu1-2/menu1-2-2',
-                name: 'Menu1-2-2',
+                name: 'nested/menu1/menu1-2/menu1-2-2',
                 meta: { title: 'Menu1-2-2' }
               }
             ]
@@ -99,13 +99,14 @@ const menus = [
           {
             path: 'menu1-3',
             component: '/views/nested/menu1/menu1-3',
-            name: 'Menu1-3',
+            name: 'nested/menu1/menu1-3',
             meta: { title: 'Menu1-3' }
           }
         ]
       },
       {
         path: 'menu2',
+        name: 'nested/menu2',
         component: '/views/nested/menu2/index',
         meta: { title: 'menu2' }
       }

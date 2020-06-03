@@ -1,25 +1,18 @@
 import Layout from '@/layout'
-// 使用钩子函数对路由进行权限跳转
+// 动态加载路由
 const context = require.context('../views', true, /router.js$/)
-console.log(context)
-
-const asyncConstantRouter = context.keys().map(item => {
-  const path = `${item.substr(2)}`
-  const pattern = /(\S*)/
-  var router = require(`@/views/${path}`).default
-  console.log(router(path))
-  //   console.log(router()) router(i.split('/')[1])
-  return null
-})
-
-const getComponent = (item, parent) => {
-  console.log('=====>', asyncConstantRouter)
-  if (parent) {
-    return asyncConstantRouter(item.name)
-  } else {
-    return Layout
+const asyncConstantRouter = new Map()
+context.keys().forEach(element => {
+  const path = `${element.substr(2)}`
+  const pattern = /(\S*)\/config\/router.js/
+  const router = require(`@/views/${path}`).default
+  const routers = router(path.match(pattern)[1])
+  if (routers && routers.length > 0) {
+    routers.forEach(item => {
+      asyncConstantRouter.set(item.name, item)
+    })
   }
-}
+})
 
 /* Layout */
 const dynamicRouter = (routerMap, parent) => {
@@ -30,12 +23,14 @@ const dynamicRouter = (routerMap, parent) => {
       breadcrumb,
       activeMenu
     } = item.meta || {}
+    const router = asyncConstantRouter.get(item.name)
+    const isLink = item.path.startsWith('http')
     const currentRouter = {
-      // 如果路由设置了 path，则作为默认 path，否则 路由地址 动态拼接生成如 /dashboard/workplace
       path: item.path || '',
-      name: item.name || item.path || '',
-      // 该路由对应页面的 组件 : (动态加载)
-      component: getComponent(item, parent),
+      name: item.name || item.path || Math.random(),
+
+      // 外链不需要component
+      component: parent ? (isLink ? null : router.component) : Layout,
       meta: {
         title: title,
         icon: icon || undefined,
@@ -43,13 +38,13 @@ const dynamicRouter = (routerMap, parent) => {
         activeMenu: activeMenu
       }
     }
-    // 是否设置了隐藏菜单
     currentRouter.hidden = item.hidden
     if (item.redirect) {
       currentRouter.redirect = item.redirect
     }
+
     // 处理有可能出现拼接出两个 反斜杠
-    if (!currentRouter.path.startsWith('http')) {
+    if (!isLink) {
       currentRouter.path = currentRouter.path.replace('//', '/')
     }
     // 重定向
