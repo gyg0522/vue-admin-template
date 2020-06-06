@@ -21,7 +21,8 @@ const dynamicRouter = (routerMap, parent) => {
       title,
       icon,
       breadcrumb,
-      activeMenu
+      activeMenu,
+      affix
     } = item.meta || {}
     const router = asyncConstantRouter.get(item.name)
     const isLink = item.path.startsWith('http')
@@ -35,7 +36,8 @@ const dynamicRouter = (routerMap, parent) => {
         title: title,
         icon: icon || undefined,
         breadcrumb: breadcrumb,
-        activeMenu: activeMenu
+        activeMenu: activeMenu,
+        affix: affix === true
       }
     }
     currentRouter.hidden = item.hidden
