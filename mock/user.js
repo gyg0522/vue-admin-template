@@ -30,8 +30,8 @@ const menus = [
     children: [
       {
         path: '/form/index',
-        name: 'form',
-        meta: { title: 'Form', icon: 'form' }
+        name: 'Form',
+        meta: { title: 'Form', icon: 'form', noCache: false }
       }
     ]
   },
@@ -49,7 +49,7 @@ const menus = [
       },
       {
         path: '/example/tree',
-        name: 'tree',
+        name: 'Tree',
         component: '/views/tree/index',
         meta: { title: 'Tree', icon: 'tree', noCache: false }
       }

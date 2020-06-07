@@ -10,13 +10,12 @@
       class="filter-tree"
       default-expand-all
     />
-
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'Tree',
   data() {
     return {
       filterText: '',

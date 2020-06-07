@@ -2,7 +2,7 @@ const router = (path) => {
   return [
     {
       path: `/${path}`,
-      name: `${path}`,
+      name: 'Form',
       component: resolve => require(['../index.vue'], resolve),
       meta: { title: '表单' }
     }

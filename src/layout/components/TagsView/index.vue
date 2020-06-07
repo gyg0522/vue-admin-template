@@ -105,7 +105,6 @@ export default {
       if (name) {
         this.$store.dispatch('tagsView/addView', this.$route)
       }
-      return false
     },
     refreshRoute() {
       const view = this.$route
