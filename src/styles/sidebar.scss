@@ -68,10 +68,14 @@
     .el-submenu__title {
       &:hover {
         background-color: $menuHover !important;
+        color: #fff !important;
       }
     }
 
     .is-active>.el-submenu__title {
+      color: $subMenuActiveText !important;
+    }
+    .is-active i {
       color: $subMenuActiveText !important;
     }
 
@@ -82,7 +86,11 @@
 
       &:hover {
         background-color: $subMenuHover !important;
+        color: #fff !important;
       }
+    }
+   .router-link-active > .el-menu-item.is-active {
+      background-color: $subMenuActiveBg !important
     }
   }
 

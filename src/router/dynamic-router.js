@@ -22,6 +22,7 @@ const dynamicRouter = (routerMap, parent) => {
       icon,
       breadcrumb,
       activeMenu,
+      noCache,
       affix
     } = item.meta || {}
     const router = asyncConstantRouter.get(item.name)
@@ -37,7 +38,8 @@ const dynamicRouter = (routerMap, parent) => {
         icon: icon || undefined,
         breadcrumb: breadcrumb,
         activeMenu: activeMenu,
-        affix: affix === true
+        affix: affix === true,
+        noCache: noCache !== false
       }
     }
     currentRouter.hidden = item.hidden
@@ -75,7 +77,6 @@ export const GeneratorDynamicRouter = (routerMap) => {
       redirect: '/404',
       hidden: true
     })
-    console.log(routers)
     resolve(routers)
   })
 }

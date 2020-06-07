@@ -51,7 +51,7 @@ const menus = [
         path: '/example/tree',
         name: 'tree',
         component: '/views/tree/index',
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: { title: 'Tree', icon: 'tree', noCache: false }
       }
     ]
   },

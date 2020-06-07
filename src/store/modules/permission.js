@@ -6,13 +6,13 @@ import {
 } from '@/router/dynamic-router'
 
 const state = {
-  routers: [],
-  addRouters: []
+  routes: [],
+  addRoutes: []
 }
 const mutations = {
   SET_ROUTERS: (state, routers) => {
-    state.addRouters = routers
-    state.routers = constantRoutes.concat(routers)
+    state.addRoutes = routers
+    state.routes = constantRoutes.concat(routers)
   }
 }
 const actions = {
